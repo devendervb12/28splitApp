@@ -1,0 +1,55 @@
+{
+  "_version" : "1.0.0",
+  "start_url" : "index.html",
+  "sap.app" : {
+    "id" : "smax.batch28.SA",
+    "dataSources" : {
+       "smaxProduct" : {
+          "uri" : "proxy/http/122.180.87.238:8000/sap/opu/odata/SAP/ZGW_BATCH28_PRODUCT_SRV_01/"
+       }
+       
+    }
+  },
+  "sap.ui5" : {
+     "rootView" : "smax.batch28.SA.view.SPLITAPP",
+     "models" : {
+       "" : {
+           "dataSource" : "smaxProduct"
+       }
+       
+     },
+     "routing" : {
+        "config" : {
+           "routerClass" : "sap.m.routing.Router",
+           "viewType" : "XML",
+           "viewPath" : "smax.batch28.SA.view",
+           "controlId" : "idSplitApp"
+        },
+        "routes" : [
+        	{
+        	 "pattern" : "",
+        	 "name" : "homePage",
+        	  "target" : ["mPage", "dPage"]
+        	},
+        	{
+        	 "pattern" : "toDetail/{prodId}",
+        	 "name" : "toDetails",
+        	 "target" : ["mPage","dPage"]
+        	
+        	}
+        
+        ],
+        "targets" : {
+              "mPage" : {
+                 "viewName" : "ProductList",
+                 "controlAggregation" : "masterPages"
+              },
+              "dPage" : {
+                 "viewName" : "ProductDetails",
+                 "controlAggregation" : "detailPages"
+              }
+        }
+     }
+  }
+
+}
